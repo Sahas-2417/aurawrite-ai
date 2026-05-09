@@ -53,7 +53,7 @@ AuraWrite AI is an AI-powered LinkedIn content generation platform that transfor
 
 ## 📸 Preview
 
-<img width="100%" alt="AuraWrite AI Preview" src="https://raw.githubusercontent.com/Sahas-2417/aurawrite-ai/main/frontend/public/logo.png" />
+<img width="100%" alt="AuraWrite AI Preview" src="https://aurawrite-ai.vercel.app/preview.png" />
 
 ---
 
