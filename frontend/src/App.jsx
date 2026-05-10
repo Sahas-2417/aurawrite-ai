@@ -11,7 +11,7 @@ import { useAuth } from './contexts/AuthContext';
 import { migrateLocalPosts } from './services/firestore';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
-import { Edit3, SunMedium, Moon, Loader2, LogOut, ChevronDown } from 'lucide-react';
+import { Edit3, SunMedium, Moon, Loader2, LogOut, ChevronDown, Menu, X } from 'lucide-react';
 import { cn } from './utils';
 import logoImg from './assets/logo.png';
 
@@ -130,48 +130,54 @@ function App() {
       </div>
 
       {/* Sidebar Overlay for Mobile */}
-      {sidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-navy-950/40 backdrop-blur-md z-[40] md:hidden transition-opacity duration-500"
-          onClick={() => setSidebarOpen(false)}
-        ></div>
-      )}
+      <AnimatePresence>
+        {sidebarOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-navy-950/40 backdrop-blur-md z-[40] md:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
-      <Sidebar 
-        isDarkMode={isDarkMode} 
-        activeTab={activeTab} 
-        setActiveTab={(tab) => {
-          setActiveTab(tab);
-          setSidebarOpen(false);
-        }} 
-        isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-      />
-      
-      {/* Floating Card Container */}
-      <div className="flex-1 flex flex-col min-h-screen md:py-6 md:pr-6 relative z-10">
+      <div className="flex w-full min-h-screen">
+        <Sidebar 
+          activeTab={activeTab} 
+          setActiveTab={(tab) => {
+            setActiveTab(tab);
+            setSidebarOpen(false);
+          }} 
+          isOpen={sidebarOpen}
+          onClose={() => setSidebarOpen(false)}
+          user={user}
+          onLogout={logout}
+        />
         
-        {/* Mobile Header */}
-        <header className="md:hidden flex items-center justify-between px-6 py-5 bg-white/50 dark:bg-navy-900/50 backdrop-blur-xl border-b border-slate-200 dark:border-white/5 z-30 transition-colors duration-500">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 flex items-center justify-center">
-              <img src={logoImg} alt="AuraWrite" className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(168,85,247,0.3)]" />
-            </div>
-            <h1 className="text-[18px] font-black text-slate-900 dark:text-white tracking-tight">AuraWrite <span className="text-purple-500">AI</span></h1>
-          </div>
-          <div className="flex items-center gap-3">
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col min-h-screen relative z-10">
+          
+          {/* Mobile Navigation Header — Premium Floating Style */}
+          <header className="md:hidden flex items-center justify-between px-6 py-5 z-30">
             <button 
               onClick={() => setSidebarOpen(true)}
-              className="p-2.5 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 active:scale-90 transition-all border border-slate-200 dark:border-white/5"
+              className="p-3 rounded-2xl bg-white/10 dark:bg-navy-800/80 backdrop-blur-xl text-slate-700 dark:text-slate-200 border border-white/20 dark:border-white/5 shadow-lg active:scale-95 transition-all"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+              <Menu className="w-6 h-6" />
             </button>
-          </div>
-        </header>
+
+            <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/10 dark:bg-navy-800/80 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-lg">
+              <img src={logoImg} alt="Logo" className="w-6 h-6 object-contain" />
+              <span className="text-[14px] font-black text-slate-900 dark:text-white tracking-tight uppercase tracking-widest">AuraWrite</span>
+            </div>
+          </header>
+
 
         {/* ── Unified Top Header (Desktop & Mobile Profile + Theme) ── */}
-        <div className="absolute top-0 right-0 p-4 md:p-0 z-[60] flex items-center gap-3 justify-end pointer-events-none md:relative md:w-full md:pb-4 md:flex-row">
+        <div className="absolute top-0 right-0 p-4 md:p-0 z-[60] flex items-center gap-3 justify-end pointer-events-none md:relative md:w-full md:pb-4 md:flex-row md:justify-end">
           <div className="pointer-events-auto flex items-center gap-3 glass-card bg-white/40 dark:bg-navy-800/40 backdrop-blur-xl border border-white/20 dark:border-white/10 p-1.5 rounded-[1.25rem] shadow-lg shadow-purple-500/5">
+
             
             {/* Theme Toggle */}
             <button 

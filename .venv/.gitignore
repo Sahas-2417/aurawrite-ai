@@ -1,0 +1,42 @@
+# dependencies
+node_modules
+
+# environment variables
+.env
+.env.local
+.env.*
+
+# build files
+dist
+
+# logs
+*.log
+
+# virtual env
+.venv/
+
+# backend env
+backend/.env
+
+# frontend env
+frontend/.env
+.env
+.env.*
+
+# dependencies
+node_modules
+
+# build files
+dist
+
+# env files
+.env
+.env.*
+frontend/.env
+backend/.env
+
+# python virtual env
+.venv/
+
+# logs
+*.log
