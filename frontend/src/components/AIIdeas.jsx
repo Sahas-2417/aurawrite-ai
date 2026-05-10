@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Lightbulb, Sparkles, Copy, Check, TrendingUp, Target, Loader2, Cpu, Briefcase, Rocket, Clock, Laptop, SunMedium, Moon, Zap, ArrowRight, Brain, Search, Terminal, Globe, Award } from 'lucide-react';
+import { Lightbulb, Sparkles, Copy, Check, TrendingUp, Target, Loader2, Cpu, Briefcase, Rocket, Clock, Laptop, Zap, ArrowRight, Brain, Search, Terminal, Globe, Award } from 'lucide-react';
 import { notify } from '../toastConfig';
 import { generateIdeas } from '../services/api';
 import { cn } from '../utils';
@@ -19,7 +19,7 @@ const LOADING_STEPS = [
   "Finalizing content concepts..."
 ];
 
-const AIIdeas = ({ isDarkMode, toggleDarkMode, onUseIdea }) => {
+const AIIdeas = ({ onUseIdea }) => {
   const [selectedCategory, setSelectedCategory] = useState('AI');
   const [isGenerating, setIsGenerating] = useState(false);
   const [ideasData, setIdeasData] = useState(null);
@@ -78,31 +78,7 @@ const AIIdeas = ({ isDarkMode, toggleDarkMode, onUseIdea }) => {
           </p>
         </div>
 
-        {/* Right — Theme Toggle */}
-        <div className="flex items-center gap-4 pt-2 md:pt-0 self-start md:self-auto">
-          <button 
-            onClick={toggleDarkMode}
-            className="group relative flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200 dark:border-purple-500/30 backdrop-blur-xl hover:bg-white/80 dark:hover:bg-slate-800 transition-all duration-500 shadow-lg shadow-purple-500/5"
-          >
-            <div className={cn(
-              "relative w-11 h-6 rounded-full transition-all duration-500 overflow-hidden border shadow-inner",
-              isDarkMode 
-                ? "bg-gradient-to-r from-purple-600 to-indigo-600 border-purple-400/50 shadow-[0_0_15px_rgba(168,85,247,0.4)]" 
-                : "bg-slate-200 border-slate-300"
-            )}>
-              <div className={cn(
-                "absolute top-1 w-4 h-4 rounded-full transition-all duration-500 shadow-[0_2px_5px_rgba(0,0,0,0.2)] flex items-center justify-center",
-                isDarkMode ? "left-[24px] bg-white text-purple-600 scale-110" : "left-1 bg-white text-amber-500"
-              )}>
-                {isDarkMode ? <Moon className="w-2.5 h-2.5 fill-purple-600/10" /> : <SunMedium className="w-2.5 h-2.5 fill-amber-500/10" />}
-              </div>
-            </div>
-            <span className="text-[11px] font-black text-slate-500 dark:text-slate-200 uppercase tracking-widest transition-colors duration-500">
-              {isDarkMode ? 'Dark' : 'Light'}
-            </span>
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
-          </button>
-        </div>
+
       </header>
 
       <div className="px-4 md:px-8 pb-12 relative z-10">
