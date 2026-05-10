@@ -132,11 +132,11 @@ const PostGenerator = ({ isDarkMode, toggleDarkMode, seedIdea, clearSeedIdea }) 
   return (
     <div className="flex flex-col relative text-slate-800 dark:text-slate-200 transition-colors duration-500">
       {/* Premium Hero Section */}
-      <header className="relative px-4 md:px-8 pt-6 md:pt-8 pb-4 md:pb-6 shrink-0 overflow-hidden">
-        {/* Animated Aurora Gradient Glow */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
+      <header className="relative px-4 md:px-8 pt-6 md:pt-8 pb-4 md:pb-6 shrink-0">
+        {/* Animated Aurora Gradient Glow — contained to prevent corner bleed */}
+        <div className="absolute inset-0 -z-10 overflow-hidden rounded-t-[2.5rem] md:rounded-t-[2rem]">
           <div 
-            className="absolute -top-20 -left-20 w-[300px] md:w-[500px] h-[300px] rounded-full blur-[80px] md:blur-[100px] opacity-30 dark:opacity-20 animate-aurora"
+            className="absolute top-[-10%] left-[5%] w-[250px] md:w-[400px] h-[250px] rounded-full blur-[80px] md:blur-[100px] opacity-25 dark:opacity-15 animate-aurora"
             style={{ background: 'linear-gradient(135deg, #a855f7, #6366f1, #8b5cf6, #c084fc)', backgroundSize: '300% 300%' }}
           />
         </div>
@@ -295,29 +295,74 @@ const PostGenerator = ({ isDarkMode, toggleDarkMode, seedIdea, clearSeedIdea }) 
             </div>
 
             {/* Options */}
-            <div className="glass-card rounded-[1.5rem] p-1.5 shadow-sm">
-              <label className="flex items-center justify-between p-4 cursor-pointer hover:bg-white/50 dark:hover:bg-white/5 rounded-xl transition-all duration-300 group">
+            <div className="glass-card rounded-[1.5rem] p-2 shadow-sm space-y-1">
+              {/* Hashtags Toggle */}
+              <label className="flex items-center justify-between px-4 py-3.5 cursor-pointer hover:bg-white/50 dark:hover:bg-white/5 rounded-xl transition-all duration-300 group">
                 <div className="flex items-center gap-3">
-                  <Hash className="w-4 h-4 text-purple-500 opacity-60 group-hover:opacity-100 transition-opacity" />
-                  <span className="text-[13px] font-bold text-slate-700 dark:text-slate-300">Generate Hashtags</span>
+                  <div className={cn(
+                    "w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300",
+                    includeHashtags ? "bg-purple-500/15 text-purple-500" : "bg-slate-100 dark:bg-slate-800 text-slate-400"
+                  )}>
+                    <Hash className="w-4 h-4" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[13px] font-bold text-slate-700 dark:text-slate-200">Generate Hashtags</span>
+                    <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{includeHashtags ? 'Enabled' : 'Disabled'}</span>
+                  </div>
                 </div>
-                <div className="relative flex items-center">
-                  <input type="checkbox" className="sr-only" checked={includeHashtags} onChange={(e) => setIncludeHashtags(e.target.checked)} />
-                  <div className={cn("block w-10 h-5.5 rounded-full transition-colors duration-300", includeHashtags ? "bg-purple-500 shadow-lg shadow-purple-500/30" : "bg-slate-200 dark:bg-slate-700")}></div>
-                  <div className={cn("absolute left-[3px] bg-white w-4 h-4 rounded-full transition-transform duration-300 shadow-sm", includeHashtags ? "transform translate-x-[18px]" : "")}></div>
-                </div>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={includeHashtags}
+                  onClick={() => setIncludeHashtags(!includeHashtags)}
+                  className={cn(
+                    "relative inline-flex h-7 w-[52px] shrink-0 items-center rounded-full border-2 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900",
+                    includeHashtags
+                      ? "bg-purple-500 border-purple-500 shadow-[0_0_12px_rgba(168,85,247,0.4),0_0_24px_rgba(168,85,247,0.15)]"
+                      : "bg-slate-200 dark:bg-slate-700 border-slate-200 dark:border-slate-600"
+                  )}
+                >
+                  <span className={cn(
+                    "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                    includeHashtags ? "translate-x-[26px] scale-105" : "translate-x-[3px] scale-100"
+                  )} />
+                </button>
               </label>
 
-              <label className="flex items-center justify-between p-4 cursor-pointer hover:bg-white/50 dark:hover:bg-white/5 rounded-xl transition-all duration-300 group">
+              {/* Thin separator */}
+              <div className="mx-4 h-px bg-slate-100 dark:bg-white/5"></div>
+
+              {/* Emojis Toggle */}
+              <label className="flex items-center justify-between px-4 py-3.5 cursor-pointer hover:bg-white/50 dark:hover:bg-white/5 rounded-xl transition-all duration-300 group">
                 <div className="flex items-center gap-3">
-                  <Smile className="w-4 h-4 text-purple-500 opacity-60 group-hover:opacity-100 transition-opacity" />
-                  <span className="text-[13px] font-bold text-slate-700 dark:text-slate-300">Add Emojis</span>
+                  <div className={cn(
+                    "w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300",
+                    includeEmojis ? "bg-purple-500/15 text-purple-500" : "bg-slate-100 dark:bg-slate-800 text-slate-400"
+                  )}>
+                    <Smile className="w-4 h-4" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[13px] font-bold text-slate-700 dark:text-slate-200">Add Emojis</span>
+                    <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{includeEmojis ? 'Enabled' : 'Disabled'}</span>
+                  </div>
                 </div>
-                <div className="relative flex items-center">
-                  <input type="checkbox" className="sr-only" checked={includeEmojis} onChange={(e) => setIncludeEmojis(e.target.checked)} />
-                  <div className={cn("block w-10 h-5.5 rounded-full transition-colors duration-300", includeEmojis ? "bg-purple-500 shadow-lg shadow-purple-500/30" : "bg-slate-200 dark:bg-slate-700")}></div>
-                  <div className={cn("absolute left-[3px] bg-white w-4 h-4 rounded-full transition-transform duration-300 shadow-sm", includeEmojis ? "transform translate-x-[18px]" : "")}></div>
-                </div>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={includeEmojis}
+                  onClick={() => setIncludeEmojis(!includeEmojis)}
+                  className={cn(
+                    "relative inline-flex h-7 w-[52px] shrink-0 items-center rounded-full border-2 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900",
+                    includeEmojis
+                      ? "bg-purple-500 border-purple-500 shadow-[0_0_12px_rgba(168,85,247,0.4),0_0_24px_rgba(168,85,247,0.15)]"
+                      : "bg-slate-200 dark:bg-slate-700 border-slate-200 dark:border-slate-600"
+                  )}
+                >
+                  <span className={cn(
+                    "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                    includeEmojis ? "translate-x-[26px] scale-105" : "translate-x-[3px] scale-100"
+                  )} />
+                </button>
               </label>
             </div>
 

@@ -110,3 +110,28 @@
 
 [data-visible="true"]  { animation: toast-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 [data-visible="false"] { animation: toast-exit  0.3s cubic-bezier(0.7, 0, 0.84, 0) forwards; }
+
+/* ── Cinematic Intro Animation ─────────────────────────────────── */
+@keyframes intro-text-shine {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes intro-glow-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(168,85,247,0.2), 0 0 40px rgba(139,92,246,0.1);
+    opacity: 0.6;
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(168,85,247,0.4), 0 0 80px rgba(139,92,246,0.2);
+    opacity: 1;
+  }
+}
+
+@keyframes intro-particle-drift {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  20%  { opacity: 0.6; }
+  80%  { opacity: 0.3; }
+  100% { transform: translateY(-100px) translateX(20px); opacity: 0; }
+}

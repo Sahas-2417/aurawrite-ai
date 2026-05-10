@@ -1,15 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Sidebar from './components/Sidebar';
 import PostGenerator from './components/PostGenerator';
 import MyPosts from './components/MyPosts';
 import AIIdeas from './components/AIIdeas';
 import PostEnhancer from './components/PostEnhancer';
 import ErrorBoundary from './components/ErrorBoundary';
+import IntroAnimation from './components/IntroAnimation';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
 import { Edit3, SunMedium, Moon } from 'lucide-react';
 import logoImg from './assets/logo.png';
 
 function App() {
+  // ── Intro animation (once per session) ──────────────────
+  const [showIntro, setShowIntro] = useState(() => {
+    return !sessionStorage.getItem('aurawrite_intro_played');
+  });
+
+  const handleIntroComplete = useCallback(() => {
+    sessionStorage.setItem('aurawrite_intro_played', 'true');
+    setShowIntro(false);
+  }, []);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     return localStorage.getItem('theme') === 'dark';
   });
@@ -37,7 +48,17 @@ function App() {
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-navy-900 font-sans selection:bg-purple-200 selection:text-purple-900 dark:selection:bg-purple-900 dark:selection:text-purple-200 transition-colors duration-500 relative">
+    <>
+      {/* ── Cinematic Intro (once per session) ────────────── */}
+      {showIntro && <IntroAnimation onComplete={handleIntroComplete} />}
+
+      {/* ── Main Application ──────────────────────────────── */}
+      <motion.div
+        className="flex min-h-screen bg-slate-50 dark:bg-navy-900 font-sans selection:bg-purple-200 selection:text-purple-900 dark:selection:bg-purple-900 dark:selection:text-purple-200 transition-colors duration-500 relative"
+        initial={showIntro ? { opacity: 0 } : { opacity: 1 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+      >
       
       {/* Premium Background Orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
@@ -132,7 +153,8 @@ function App() {
           },
         }}
       />
-    </div>
+      </motion.div>
+    </>
   );
 }
 
