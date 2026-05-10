@@ -265,7 +265,8 @@ function App() {
           </div>
         </main>
       </div>
-      <Toaster
+    </div>
+    <Toaster
         position="top-right"
         gutter={10}
         containerStyle={{ top: 20, right: 20 }}

@@ -193,6 +193,7 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose, user, onLogout }) =
         </div>
       </div>
     </motion.aside>
+    </>
   );
 };
 
