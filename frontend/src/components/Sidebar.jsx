@@ -85,13 +85,13 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose, user, onLogout }) =
         animate={window.innerWidth < 768 ? (isOpen ? "open" : "closed") : false}
         variants={sidebarVariants}
         className={cn(
-          "fixed md:sticky md:top-0 w-[240px] md:w-[280px] bg-navy-900/90 backdrop-blur-3xl flex flex-col h-full md:h-screen text-slate-300 border-r border-white/5 z-[50] md:translate-x-0 transition-shadow duration-500 md:shadow-none",
+          "fixed md:sticky md:top-0 w-[240px] md:w-[280px] bg-navy-800/90 backdrop-blur-3xl flex flex-col h-full md:h-screen text-slate-300 border-r border-white/10 z-[50] md:translate-x-0 transition-shadow duration-500 md:shadow-none",
           isOpen ? "shadow-[20px_0_60px_rgba(0,0,0,0.4)]" : ""
         )}
       >
         <button 
           onClick={onClose}
-          className="md:hidden absolute top-6 right-6 p-2.5 rounded-xl bg-white/5 text-slate-400 hover:text-white transition-all active:scale-90 border border-white/5"
+          className="md:hidden absolute top-6 right-6 p-2.5 rounded-xl bg-white/10 text-slate-400 hover:text-white transition-all active:scale-90 border border-white/10"
         >
           <X className="w-5 h-5" />
         </button>
@@ -130,7 +130,7 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose, user, onLogout }) =
         </div>
 
         <div>
-          <div className="text-[10px] font-black text-slate-500/70 tracking-[0.2em] uppercase px-3 mb-3">Vault</div>
+          <div className="text-[10px] font-black text-slate-500/70 tracking-[0.2em] uppercase px-3 mb-3">Content Library</div>
           <div className="space-y-1.5">
             <SidebarItem icon={Folder} label="My Posts" active={activeTab === 'My Posts'} onClick={() => handleTabClick('My Posts')} />
             <SidebarItem icon={Lightbulb} label="AI Ideas" active={activeTab === 'AI Ideas'} onClick={() => handleTabClick('AI Ideas')} />
@@ -139,9 +139,9 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose, user, onLogout }) =
 
         {/* Profile Section for Mobile */}
         {user && (
-          <div className="mt-auto pt-6 border-t border-white/5 md:hidden">
+          <div className="mt-auto pt-6 border-t border-white/10 md:hidden">
             <div className="px-3 mb-4">
-              <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/5">
+              <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/10 border border-white/10">
                 <img 
                   src={user.photoURL || `https://ui-avatars.com/api/?name=${user.displayName || 'User'}&background=a855f7&color=fff`} 
                   alt="Avatar" 
@@ -171,7 +171,7 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose, user, onLogout }) =
           {/* Animated Gradient Border */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 via-transparent to-transparent rounded-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-          <div className="relative bg-navy-800/80 border border-white/5 shadow-lg rounded-2xl p-4 flex flex-col gap-2 backdrop-blur-xl">
+          <div className="relative bg-navy-800/80 border border-white/10 shadow-lg rounded-2xl p-4 flex flex-col gap-2 backdrop-blur-xl">
             <div className="flex items-center gap-2 mb-0.5">
               <Sparkles className="w-3.5 h-3.5 text-purple-400 group-hover:animate-pulse" />
               <span className="text-[10px] font-bold text-purple-200/80 tracking-widest uppercase">Daily Tip</span>

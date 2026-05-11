@@ -145,7 +145,7 @@ const MyPosts = ({ setActiveTab }) => {
             placeholder="Filter by keyword or bullet..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-12 py-3.5 md:py-4 bg-white/40 dark:bg-slate-800/40 border-2 border-slate-100 dark:border-white/5 rounded-2xl focus:ring-4 focus:ring-purple-500/5 focus:border-purple-500/50 text-[15px] font-bold text-slate-700 dark:text-slate-200 placeholder-slate-400/60 transition-all duration-500 backdrop-blur-xl shadow-sm outline-none"
+            className="w-full pl-12 pr-12 py-3.5 md:py-4 bg-white/40 dark:bg-slate-800/50 border-2 border-slate-100 dark:border-white/10 rounded-2xl focus:ring-4 focus:ring-purple-500/5 focus:border-purple-500/50 text-[15px] font-bold text-slate-700 dark:text-slate-200 placeholder-slate-400/60 transition-all duration-500 backdrop-blur-xl shadow-sm outline-none"
           />
           {searchQuery && (
             <button 
@@ -166,7 +166,7 @@ const MyPosts = ({ setActiveTab }) => {
             <select
               value={filterTone}
               onChange={(e) => setFilterTone(e.target.value)}
-              className="w-full pl-11 pr-10 py-3.5 md:py-4 bg-white/40 dark:bg-slate-800/40 border-2 border-slate-100 dark:border-white/5 rounded-2xl focus:ring-4 focus:ring-purple-500/5 focus:border-purple-500/50 text-[14px] font-black text-slate-700 dark:text-slate-200 appearance-none transition-all duration-500 backdrop-blur-xl outline-none cursor-pointer md:min-w-[160px] shadow-sm"
+              className="w-full pl-11 pr-10 py-3.5 md:py-4 bg-white/40 dark:bg-slate-800/50 border-2 border-slate-100 dark:border-white/10 rounded-2xl focus:ring-4 focus:ring-purple-500/5 focus:border-purple-500/50 text-[14px] font-black text-slate-700 dark:text-slate-200 appearance-none transition-all duration-500 backdrop-blur-xl outline-none cursor-pointer md:min-w-[160px] shadow-sm"
             >
               {availableTones.map(tone => (
                 <option key={tone} value={tone} className="dark:bg-slate-900 font-bold">{tone === 'All' ? 'ALL TONES' : tone.toUpperCase()}</option>
@@ -266,7 +266,7 @@ const MyPosts = ({ setActiveTab }) => {
                   {post.text}
                 </div>
 
-                <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between relative z-10">
+                <div className="mt-auto pt-6 border-t border-white/10 flex items-center justify-between relative z-10">
                   <button
                     onClick={() => handleDelete(post.id)}
                     className="p-3 text-slate-400 hover:text-red-500 dark:text-slate-600 dark:hover:text-red-400 hover:bg-red-500/5 rounded-2xl transition-all duration-300 active:scale-90"

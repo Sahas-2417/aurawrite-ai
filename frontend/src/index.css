@@ -37,7 +37,7 @@
 /* ── Premium Utilities ─────────────────────────────────────────── */
 @layer components {
   .glass-card {
-    @apply bg-white/70 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/20 dark:border-white/5 shadow-xl;
+    @apply bg-white/70 dark:bg-slate-800/40 backdrop-blur-2xl border border-white/20 dark:border-white/10 shadow-xl;
   }
   
   .premium-gradient-text {

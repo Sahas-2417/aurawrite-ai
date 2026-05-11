@@ -66,11 +66,11 @@ const AIIdeas = ({ onUseIdea }) => {
           <div className="flex items-center gap-2 mb-2">
             <div className="px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-[10px] md:text-[11px] font-black text-amber-600 dark:text-amber-400 uppercase tracking-widest flex items-center gap-1.5 w-fit">
               <Brain className="w-3 h-3" />
-              Strategic Console
+              Strategy Lab
             </div>
           </div>
           <h2 className="text-[26px] md:text-[34px] font-black text-slate-900 dark:text-white flex items-center gap-3 tracking-tight transition-colors duration-500">
-            Intelligence Hub
+            Idea Hub
             <Sparkles className="w-6 h-6 text-amber-500 animate-pulse" />
           </h2>
           <p className="text-[14px] md:text-[15px] text-slate-500 dark:text-slate-400 font-bold transition-colors duration-500 max-w-lg opacity-80">
@@ -102,7 +102,7 @@ const AIIdeas = ({ onUseIdea }) => {
                       "group glass-card hover-lift relative flex flex-col items-center text-center p-6 md:p-8 rounded-[2rem] border-2 transition-all duration-500 overflow-hidden shadow-lg",
                       active 
                         ? "bg-white dark:bg-slate-800 border-amber-500/50 shadow-xl shadow-amber-500/10 ring-4 ring-amber-500/5" 
-                        : "bg-white/40 dark:bg-slate-800/40 border-slate-100 dark:border-white/5"
+                        : "bg-white/40 dark:bg-slate-800/50 border-slate-100 dark:border-white/10"
                     )}
                   >
                     {active && <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent animate-pulse"></div>}
@@ -195,7 +195,7 @@ const AIIdeas = ({ onUseIdea }) => {
                           </button>
                           <button 
                             onClick={() => handleCopy(`idea-${idx}`, `${idea.title}\n\n${idea.description}`)}
-                            className="p-3 bg-white/50 dark:bg-slate-700/50 text-slate-400 hover:text-purple-500 dark:hover:text-purple-400 rounded-xl transition-all duration-300 border border-slate-100 dark:border-white/5 shadow-sm"
+                            className="p-3 bg-white/50 dark:bg-slate-700/50 text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 rounded-xl transition-all duration-300 border border-slate-100 dark:border-white/10 shadow-sm"
                           >
                             {copiedId === `idea-${idx}` ? <Check className="w-4.5 h-4.5 text-emerald-500" /> : <Copy className="w-4.5 h-4.5" />}
                           </button>
@@ -225,7 +225,7 @@ const AIIdeas = ({ onUseIdea }) => {
                           </button>
                           <button 
                             onClick={() => handleCopy(`hook-${idx}`, hook)}
-                            className="p-3 bg-white/50 dark:bg-slate-700/50 text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 rounded-xl transition-all duration-300 border border-slate-100 dark:border-white/5 shadow-sm"
+                            className="p-3 bg-white/50 dark:bg-slate-700/50 text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 rounded-xl transition-all duration-300 border border-slate-100 dark:border-white/12 shadow-sm"
                           >
                             {copiedId === `hook-${idx}` ? <Check className="w-4.5 h-4.5 text-emerald-500" /> : <Copy className="w-4.5 h-4.5" />}
                           </button>

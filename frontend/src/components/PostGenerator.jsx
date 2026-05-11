@@ -237,7 +237,7 @@ const PostGenerator = ({ seedIdea, clearSeedIdea }) => {
                         "flex flex-col items-center justify-center py-3.5 px-1 rounded-2xl border-2 transition-all duration-500 hover-lift",
                         active 
                           ? "bg-white dark:bg-slate-800 border-purple-500/50 shadow-xl shadow-purple-500/10 ring-4 ring-purple-500/5" 
-                          : "bg-white/40 dark:bg-slate-800/40 border-slate-100 dark:border-white/5 text-slate-500 dark:text-slate-400"
+                          : "bg-white/40 dark:bg-slate-800/50 border-slate-100 dark:border-white/10 text-slate-500 dark:text-slate-400"
                       )}
                     >
                       <div className={cn(
@@ -389,18 +389,18 @@ const PostGenerator = ({ seedIdea, clearSeedIdea }) => {
             <div className="glass-card rounded-[2rem] flex-1 flex flex-col shadow-2xl shadow-purple-500/5 relative overflow-hidden group/output">
               
               {/* Output Header */}
-              <div className="px-8 py-6 flex items-center justify-between border-b border-white/5">
+              <div className="px-8 py-6 flex items-center justify-between border-b border-white/10">
                 <h3 className="font-black text-slate-800 dark:text-white flex items-center gap-2.5 text-[17px] tracking-tight">
                   <div className="w-8 h-8 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-500">
                     <Sparkles className="w-4.5 h-4.5" />
                   </div>
-                  Output Console
+                  Generation Console
                 </h3>
                 <div className="flex items-center gap-3">
                   <button
                     onClick={handleCopy}
                     disabled={!generatedPost}
-                    className="flex items-center gap-2 text-[12px] font-black text-slate-600 dark:text-slate-200 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/10 px-5 py-2.5 rounded-xl transition-all shadow-sm active:scale-95 disabled:opacity-30"
+                    className="flex items-center gap-2 text-[12px] font-black text-slate-600 dark:text-slate-200 bg-white dark:bg-white/10 border border-slate-200 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-white/15 px-5 py-2.5 rounded-xl transition-all shadow-sm active:scale-95 disabled:opacity-30"
                   >
                     {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                     {copied ? 'COPIED' : 'COPY'}
@@ -470,7 +470,7 @@ const PostGenerator = ({ seedIdea, clearSeedIdea }) => {
               </div>
 
               {/* Output Footer */}
-              <div className="px-8 py-6 bg-white/30 dark:bg-black/10 border-t border-white/5 flex items-center justify-between">
+              <div className="px-8 py-6 bg-white/30 dark:bg-black/20 border-t border-white/10 flex items-center justify-between">
                 <div className="flex items-center gap-4 text-[12px] font-bold text-slate-400 tracking-wider">
                   <span className="flex items-center gap-1.5"><FileText className="w-3.5 h-3.5" /> {generatedWordCount} WORDS</span>
                   <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5" /> {generatedCharCount} CHARS</span>
@@ -495,7 +495,7 @@ const PostGenerator = ({ seedIdea, clearSeedIdea }) => {
            <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-white/5 to-transparent"></div>
 
           {[
-            { title: "Neural Engine", desc: "Advanced AI models", icon: Sparkles, color: "text-purple-500" },
+            { title: "AI Generator", desc: "Advanced AI models", icon: Sparkles, color: "text-purple-500" },
             { title: "Network Growth", desc: "Maximized engagement", icon: BarChart2, color: "text-indigo-500" },
             { title: "Speed Core", desc: "Instant generation", icon: Zap, color: "text-amber-500" },
             { title: "Master Class", desc: "Professional polish", icon: Award, color: "text-emerald-500" }
