@@ -159,7 +159,7 @@ function App() {
         <div className="flex-1 flex flex-col min-h-screen relative z-10">
           
           {/* Mobile Navigation Header — Premium Floating Style */}
-          <header className="md:hidden flex items-center justify-between px-6 py-3 z-30">
+          <header className="md:hidden flex items-center justify-start gap-4 px-6 py-3 z-30">
             <button 
               onClick={() => setSidebarOpen(true)}
               className="p-3 rounded-2xl bg-white/10 dark:bg-navy-800/80 backdrop-blur-xl text-slate-700 dark:text-slate-200 border border-white/20 dark:border-white/5 shadow-lg active:scale-95 transition-all"
@@ -175,38 +175,42 @@ function App() {
 
 
         {/* ── Unified Top Header (Desktop & Mobile Profile + Theme) ── */}
-        <div className="absolute top-5 right-6 md:top-0 md:right-0 md:pr-8 z-[60] flex items-center gap-3 justify-end pointer-events-none md:relative md:w-full md:pb-4 md:flex-row md:justify-end">
-          <div className="pointer-events-auto flex items-center gap-3 glass-card bg-white/40 dark:bg-navy-800/40 backdrop-blur-xl border border-white/20 dark:border-white/10 p-1.5 rounded-[1.25rem] shadow-lg shadow-purple-500/5">
-
+        <div className="absolute top-0 left-0 w-full md:w-auto md:relative md:top-0 md:right-0 md:pr-10 z-[60] flex items-center pointer-events-none md:pointer-events-auto">
+          <div className="flex items-center justify-between w-full md:w-auto md:gap-3 md:glass-card md:bg-white/40 md:dark:bg-navy-800/40 md:backdrop-blur-xl md:border md:border-white/20 md:dark:border-white/10 p-4 md:p-1.5 md:rounded-[1.25rem] md:shadow-lg md:shadow-purple-500/5">
             
-            {/* Theme Toggle */}
-            <button 
-              onClick={toggleDarkMode}
-              className="group relative flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/60 dark:hover:bg-white/5 transition-all duration-300"
-            >
-              <div className={cn(
-                "relative w-9 h-5 rounded-full transition-all duration-500 overflow-hidden shadow-inner",
-                isDarkMode 
-                  ? "bg-gradient-to-r from-purple-600 to-indigo-600 shadow-[0_0_10px_rgba(168,85,247,0.4)]" 
-                  : "bg-slate-200"
-              )}>
-                <div className={cn(
-                  "absolute top-0.5 w-4 h-4 rounded-full transition-all duration-500 shadow-md flex items-center justify-center",
-                  isDarkMode ? "left-[18px] bg-white text-purple-600" : "left-0.5 bg-white text-amber-500"
-                )}>
-                  {isDarkMode ? <Moon className="w-2.5 h-2.5 fill-purple-600/10" /> : <SunMedium className="w-2.5 h-2.5 fill-amber-500/10" />}
-                </div>
-              </div>
-            </button>
+            {/* Mobile Spacer (for logo/menu area) */}
+            <div className="w-12 md:hidden"></div>
 
-            <div className="w-px h-6 bg-slate-200 dark:bg-white/10"></div>
+            {/* Theme Toggle */}
+            <div className="flex-1 flex justify-center md:flex-none pointer-events-auto">
+              <button 
+                onClick={toggleDarkMode}
+                className="group relative flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/60 dark:hover:bg-white/5 transition-all duration-300 bg-white/40 dark:bg-navy-800/40 backdrop-blur-xl border border-white/20 dark:border-white/10 md:bg-transparent md:border-none md:backdrop-blur-none shadow-lg md:shadow-none"
+              >
+                <div className={cn(
+                  "relative w-9 h-5 rounded-full transition-all duration-500 overflow-hidden shadow-inner",
+                  isDarkMode 
+                    ? "bg-gradient-to-r from-purple-600 to-indigo-600 shadow-[0_0_10px_rgba(168,85,247,0.4)]" 
+                    : "bg-slate-200"
+                )}>
+                  <div className={cn(
+                    "absolute top-0.5 w-4 h-4 rounded-full transition-all duration-500 shadow-md flex items-center justify-center",
+                    isDarkMode ? "left-[18px] bg-white text-purple-600" : "left-0.5 bg-white text-amber-500"
+                  )}>
+                    {isDarkMode ? <Moon className="w-2.5 h-2.5 fill-purple-600/10" /> : <SunMedium className="w-2.5 h-2.5 fill-amber-500/10" />}
+                  </div>
+                </div>
+              </button>
+            </div>
+
+            <div className="hidden md:block w-px h-6 bg-slate-200 dark:bg-white/10"></div>
 
             {/* User Profile */}
             {user && (
-              <div className="relative">
+              <div className="relative pointer-events-auto">
                 <button
                   onClick={() => setShowProfileMenu(!showProfileMenu)}
-                  className="flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-white/60 dark:hover:bg-white/5 transition-all duration-300"
+                  className="flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-white/60 dark:hover:bg-white/5 transition-all duration-300 bg-white/40 dark:bg-navy-800/40 backdrop-blur-xl border border-white/20 dark:border-white/10 md:bg-transparent md:border-none md:backdrop-blur-none shadow-lg md:shadow-none"
                 >
                   <img 
                     src={user.photoURL || `https://ui-avatars.com/api/?name=${user.displayName || 'User'}&background=a855f7&color=fff`} 
