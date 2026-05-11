@@ -175,7 +175,7 @@ function App() {
 
 
         {/* ── Unified Top Header (Desktop & Mobile Profile + Theme) ── */}
-        <div className="absolute top-5 right-6 md:relative md:top-0 md:right-0 md:w-full md:pb-4 md:pr-6 z-[60] flex items-center justify-end pointer-events-none">
+        <div className="absolute top-5 right-6 md:relative md:top-0 md:right-0 md:w-full md:pb-4 md:pr-8 z-[60] flex items-center justify-end pointer-events-none">
           <div className="pointer-events-auto flex items-center gap-4 glass-card bg-white/40 dark:bg-navy-800/40 backdrop-blur-xl border border-white/20 dark:border-white/10 p-2 rounded-[1.25rem] shadow-lg shadow-purple-500/5">
             
             {/* Theme Toggle */}
