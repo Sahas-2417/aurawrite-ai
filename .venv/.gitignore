@@ -39,4 +39,8 @@ backend/.env
 .venv/
 
 # logs
-*.log
+*.
+
+.env
+*.env
+__pycache__/
