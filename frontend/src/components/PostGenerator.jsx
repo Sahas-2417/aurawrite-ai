@@ -48,6 +48,7 @@ const PostGenerator = ({ seedIdea, clearSeedIdea }) => {
 
   const [loadingMsgIndex, setLoadingMsgIndex] = useState(0);
   const loadingInterval = useRef(null);
+  const textareaRef = useRef(null);
 
   const [charCount, setCharCount] = useState(0);
   const [wordCount, setWordCount] = useState(0);
@@ -55,6 +56,12 @@ const PostGenerator = ({ seedIdea, clearSeedIdea }) => {
   useEffect(() => {
     setCharCount(bulletPoints.length);
     setWordCount(bulletPoints.trim() === '' ? 0 : bulletPoints.trim().split(/\s+/).length);
+
+    // Auto-expand textarea
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
   }, [bulletPoints]);
 
   // Rotate loading messages during generation
@@ -203,10 +210,11 @@ const PostGenerator = ({ seedIdea, clearSeedIdea }) => {
               </div>
               <div className="relative">
                 <textarea
+                  ref={textareaRef}
                   value={bulletPoints}
                   onChange={(e) => setBulletPoints(e.target.value)}
                   placeholder="• Completed YOLOv8 internship project&#10;• Learned Roboflow and model training..."
-                  className="w-full h-[220px] glass-card rounded-[1.5rem] p-6 text-slate-700 dark:text-slate-200 placeholder-slate-400/60 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400/50 transition-all duration-300 resize-none text-[15px] leading-relaxed shadow-sm hover:shadow-md"
+                  className="w-full min-h-[120px] md:h-[220px] glass-card rounded-[1.5rem] p-6 text-slate-700 dark:text-slate-200 placeholder-slate-400/60 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400/50 transition-all duration-300 resize-none text-[15px] leading-relaxed shadow-sm hover:shadow-md overflow-hidden"
                 />
                 <div className="absolute bottom-4 right-5 text-[10px] font-black text-slate-400/80 bg-white/50 dark:bg-slate-800/50 px-2.5 py-1 rounded-lg backdrop-blur-md border border-white/10">
                   {bulletPoints.split('\n').filter(l => l.trim().length > 0).length} / 15 BULLETS

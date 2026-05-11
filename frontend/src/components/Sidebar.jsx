@@ -85,7 +85,7 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose, user, onLogout }) =
         animate={window.innerWidth < 768 ? (isOpen ? "open" : "closed") : false}
         variants={sidebarVariants}
         className={cn(
-          "fixed md:sticky md:top-0 w-[280px] bg-navy-900/90 backdrop-blur-3xl flex flex-col h-full md:h-screen text-slate-300 border-r border-white/5 z-[50] md:translate-x-0 transition-shadow duration-500 md:shadow-none",
+          "fixed md:sticky md:top-0 w-[240px] md:w-[280px] bg-navy-900/90 backdrop-blur-3xl flex flex-col h-full md:h-screen text-slate-300 border-r border-white/5 z-[50] md:translate-x-0 transition-shadow duration-500 md:shadow-none",
           isOpen ? "shadow-[20px_0_60px_rgba(0,0,0,0.4)]" : ""
         )}
       >
@@ -97,7 +97,7 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose, user, onLogout }) =
         </button>
 
         {/* Logo Area */}
-        <div className="h-28 flex items-center px-5 mt-4 shrink-0">
+        <div className="h-28 flex items-center px-4 md:px-5 mt-4 shrink-0">
           <div className="flex items-center gap-3.5 group cursor-pointer w-full">
             <div className="relative shrink-0">
               <div className="absolute -inset-2 bg-purple-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -120,7 +120,7 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose, user, onLogout }) =
 
 
       {/* Navigation */}
-      <nav className="flex-1 px-5 py-4 overflow-y-auto custom-scrollbar flex flex-col gap-8">
+      <nav className="flex-1 px-4 md:px-5 py-4 overflow-y-auto custom-scrollbar flex flex-col gap-8">
         <div>
           <div className="text-[10px] font-black text-slate-500/70 tracking-[0.2em] uppercase px-3 mb-3">Workspace</div>
           <div className="space-y-1.5">
@@ -165,7 +165,7 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose, user, onLogout }) =
       </nav>
 
       {/* Bottom Area: Daily Tip & Footer */}
-      <div className="px-5 pb-8 mt-auto flex flex-col gap-5">
+      <div className="px-4 md:px-5 pb-8 mt-auto flex flex-col gap-5">
         {/* Daily Tip Card */}
         <div className="relative group rounded-2xl p-[1px] shrink-0 transition-all duration-300 hover:shadow-[0_0_20px_rgba(147,51,234,0.1)]">
           {/* Animated Gradient Border */}

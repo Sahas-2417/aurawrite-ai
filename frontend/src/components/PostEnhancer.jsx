@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Wand2, Loader2, Copy, Check, Sparkles, Scissors, Briefcase, Zap, Smile } from 'lucide-react';
 import { notify } from '../toastConfig';
 import { enhancePost } from '../services/api';
@@ -23,6 +23,14 @@ const PostEnhancer = () => {
   const [isEnhancing, setIsEnhancing] = useState(false);
   const [enhancedPost, setEnhancedPost] = useState('');
   const [copied, setCopied] = useState(false);
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [originalPost]);
 
   const toggleModifier = (id) => {
     setModifiers(prev => ({ ...prev, [id]: !prev[id] }));
@@ -121,10 +129,11 @@ const PostEnhancer = () => {
               </div>
               <div className="relative">
                 <textarea
+                  ref={textareaRef}
                   value={originalPost}
                   onChange={(e) => setOriginalPost(e.target.value)}
                   placeholder="Paste your draft or underperforming post here..."
-                  className="w-full min-h-[280px] glass-card rounded-[2rem] p-8 text-[15px] font-bold leading-relaxed text-slate-700 dark:text-slate-200 placeholder-slate-400/60 focus:outline-none focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500/50 transition-all duration-500 resize-none shadow-xl"
+                  className="w-full min-h-[140px] md:min-h-[280px] glass-card rounded-[2rem] p-8 text-[15px] font-bold leading-relaxed text-slate-700 dark:text-slate-200 placeholder-slate-400/60 focus:outline-none focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500/50 transition-all duration-300 resize-none shadow-xl overflow-hidden"
                 />
                 <div className="absolute bottom-5 right-6 text-[10px] font-black text-slate-400/80 bg-white/50 dark:bg-slate-800/50 px-2.5 py-1.5 rounded-lg backdrop-blur-md border border-white/10">
                   {originalPost.length} CHARACTERS
