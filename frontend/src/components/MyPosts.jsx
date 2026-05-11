@@ -137,9 +137,9 @@ const MyPosts = ({ setActiveTab }) => {
       <div className="px-4 md:px-8 pb-6 md:pb-8 shrink-0 flex flex-col md:flex-row gap-3 md:gap-4 relative z-20">
         {/* Search Input */}
         <div className="relative flex-1 group">
-          <div className="absolute inset-y-0 left-0 pl-4.5 flex items-center pointer-events-none">
-            <Search className="h-4.5 w-4.5 text-slate-400 group-focus-within:text-purple-500 transition-colors" />
-          </div>
+        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <Search className="h-5 w-5 text-slate-400 group-focus-within:text-purple-500 transition-colors" />
+        </div>
           <input
             type="text"
             placeholder="Filter by keyword or bullet..."

@@ -159,7 +159,7 @@ function App() {
         <div className="flex-1 flex flex-col min-h-screen relative z-10">
           
           {/* Mobile Navigation Header — Premium Floating Style */}
-          <header className="md:hidden flex items-center justify-between px-6 py-5 z-30">
+          <header className="md:hidden flex items-center justify-between px-6 py-3 z-30">
             <button 
               onClick={() => setSidebarOpen(true)}
               className="p-3 rounded-2xl bg-white/10 dark:bg-navy-800/80 backdrop-blur-xl text-slate-700 dark:text-slate-200 border border-white/20 dark:border-white/5 shadow-lg active:scale-95 transition-all"
@@ -175,7 +175,7 @@ function App() {
 
 
         {/* ── Unified Top Header (Desktop & Mobile Profile + Theme) ── */}
-        <div className="absolute top-0 right-0 p-4 md:p-0 z-[60] flex items-center gap-3 justify-end pointer-events-none md:relative md:w-full md:pb-4 md:flex-row md:justify-end">
+        <div className="absolute top-5 right-6 md:top-0 md:right-0 md:pr-8 z-[60] flex items-center gap-3 justify-end pointer-events-none md:relative md:w-full md:pb-4 md:flex-row md:justify-end">
           <div className="pointer-events-auto flex items-center gap-3 glass-card bg-white/40 dark:bg-navy-800/40 backdrop-blur-xl border border-white/20 dark:border-white/10 p-1.5 rounded-[1.25rem] shadow-lg shadow-purple-500/5">
 
             
