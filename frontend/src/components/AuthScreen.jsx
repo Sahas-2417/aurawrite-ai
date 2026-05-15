@@ -212,6 +212,7 @@ const AuthScreen = ({ isDarkMode }) => {
     } catch (error) {
       console.error(error);
       notify.error('Authentication Failed', 'Please try again or use another account.');
+    } finally {
       setIsSigningIn(false);
     }
   };

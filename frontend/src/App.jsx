@@ -68,7 +68,6 @@ function App() {
 
   // ── Render Logic ────────────────────────────────────────────
 
-  console.log(`[App Render] showIntro: ${showIntro}, loading: ${loading}, isAuthenticated: ${isAuthenticated}`);
 
   // 1. Show cinematic intro first (if first session)
   if (showIntro) {

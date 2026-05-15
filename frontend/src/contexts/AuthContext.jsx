@@ -2,6 +2,8 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 import { 
   onAuthStateChanged, 
   signInWithPopup, 
+  signInWithRedirect,
+  getRedirectResult,
   signOut 
 } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase';
@@ -26,13 +28,26 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     let timeoutId;
     
-    // Fallback: If Firebase takes longer than 5 seconds, force loading to false
+    // 1. Handle Redirect Result (for production fallback)
+    getRedirectResult(auth).then((result) => {
+      if (result) {
+        setUser(result.user);
+      }
+    }).catch((error) => {
+      console.error("Redirect auth error:", error);
+    });
+
+    // 2. Fallback: If Firebase takes longer than 5 seconds, force loading to false
     // to prevent infinite blank screen bug.
     timeoutId = setTimeout(() => {
-      if (loading) {
-        console.warn("Firebase auth initialization timed out. Forcing load to finish.");
-        setLoading(false);
-      }
+      // Use functional update or check current loading state to avoid stale closure issues
+      setLoading(prev => {
+        if (prev) {
+          console.warn("Firebase auth initialization timed out. Forcing load to finish.");
+          return false;
+        }
+        return prev;
+      });
     }, 5000);
 
     const unsubscribe = onAuthStateChanged(auth, 
@@ -60,13 +75,18 @@ export const AuthProvider = ({ children }) => {
       const result = await signInWithPopup(auth, googleProvider);
       return result.user;
     } catch (error) {
-      // Handle specific error codes gracefully
-      if (error.code === 'auth/popup-closed-by-user') {
-        return null; // User closed the popup — not a real error
-      }
-      if (error.code === 'auth/cancelled-popup-request') {
+      // Fallback for blocked popups in production
+      if (error.code === 'auth/popup-blocked') {
+        console.warn('Popup blocked, falling back to redirect...');
+        await signInWithRedirect(auth, googleProvider);
         return null;
       }
+      
+      // Handle specific error codes gracefully
+      if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
+        return null;
+      }
+      
       console.error('Google sign-in error:', error);
       throw error;
     }
