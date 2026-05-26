@@ -88,16 +88,6 @@ https://aurawrite-ai.vercel.app/
 
 ---
 
-# 📸 Screenshots
-
-## Desktop View
-Premium AI SaaS dashboard with responsive content generation workflow.
-
-## Mobile View
-Optimized mobile experience with responsive navigation and compact UI design.
-
----
-
 # ⚙️ Installation & Setup
 
 ## 1️⃣ Clone Repository
